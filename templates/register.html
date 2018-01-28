@@ -6,21 +6,20 @@
 <body>
 <h1>Sign Up!</h1>
 <!--Sign up form-->
-<form>
+<form action = "{{url_for('signup')}}" method="post">
 Name:<br>
-  <input type="text" name="{user.name}" value="">
+  <input type="text" name="user_name" value="">
   <br>
   E-mail:<br>
-  <input type="text" name="{user.email}" value="">
+  <input type="text" name="user_email" value="">
   <br>
   Password:<br>
-  <input type="text" name ={"user.pwd"}>
-  <br>
+  <input type="text" name ="user_pwd">
+  <br><br>
   <input type="submit" value="Submit">
+</form>
 
-
-
-
+<h1>Already A Member?</h1>
 
 
 </body>
