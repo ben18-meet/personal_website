@@ -1,4 +1,4 @@
-#!/home/student/personal_website/venv/bin/python
+#!/Users/benlevi/Desktop/personal_website/venv/bin/python
 
 import sys
 import getopt

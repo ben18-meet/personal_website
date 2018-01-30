@@ -1,0 +1,20 @@
+canvas {
+    border: 1px solid #FFFF00;
+    width = 100%;
+    text-align:center;
+    display: inline;
+}
+
+#register{
+	font-family: "Verdana";
+	text-align: left;
+	color: rgb(199,208,190);
+}
+.instructions{
+}
+body {
+	background-image: url(../img/spacebackground.jpg)
+}
+#explore{
+	text-align: right;
+}

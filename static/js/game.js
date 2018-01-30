@@ -3,28 +3,19 @@ var obstacles = [];
 var userScore;
 var background;
 var explosionSound;
-var backgroundMusic
+var backgroundMusic;
+var highScore;
 
-/*function welcomeState() {
-	var welcomeArea = {
-		canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 550;
-        this.canvas.height = 400;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
 
-    },
-	}
-}
-*/
 
 function startGame() {
-    background = new component(1280,720,"../img/starfield.jpg", 0, 0, "image")
-    player = new component(80,60,"../img/spaceship.gif", 20,120, "image");    
+	//startBtn.destroy();
+	highScore  = document.getElementById("highScore")
+    background = new component(1280,720,"../static/img/starfield.jpg", 0, 0, "image")
+    player = new component(80,60,"../static/img/spaceship.gif", 20,120, "image");    
     userScore = new component("30px", "Consolas", "yellow", 280, 40, "text");
-    explosionSound = new sound("../img/explosion.mp3");
-    backgroundMusic = new sound("../img/background.mp3");
+    explosionSound = new sound("../static/img/explosion.mp3");
+    backgroundMusic = new sound("../static/img/background.mp3");
     backgroundMusic.play();
 	gameArea.start();
 
@@ -39,6 +30,8 @@ var gameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea,20);
+        //startBtn = gameArea.add.button(gameArea.width/2, gameArea.height/2, 'button', startGame(), this, 1,0,2);
+    	//startBtn.anchor.set(0.5);
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -52,10 +45,11 @@ var gameArea = {
 		var ctx = this.canvas.getContext("2d");
 		ctx.font = "30px Arial";
 		ctx.fillText("Your Score is: " + gameArea.frameNo,this.canvas.width / 2 -155,this.canvas.height/2 - 40);
+		if (gameArea.frameNo > highScore) {
+			highScore = gameArea.frameNo;
+		}
 		console.log(gameArea.frameNo);
-		/*ctx.font="16px Arial";
-		ctx.fillText("Your Score: " + userScore, gameArea.width / 2, gameArea.height/2);
-		*/
+		
 
 
 
@@ -205,7 +199,7 @@ function updateGameArea() {
         maxHeight = 340;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
         
-        obstacles.push(new component(50, 50, "../img/astroid2.gif", x, height, "image"));
+        obstacles.push(new component(50, 50, "../static/img/astroid2.gif", x, height, "image"));
     }
     for (i = 0; i < obstacles.length; i += 1) {
         obstacles[i].x += -1;
