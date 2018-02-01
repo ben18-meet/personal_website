@@ -3,9 +3,6 @@ import os
 from flask.ext.session import Session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, Length
 
 app = Flask(__name__)
 app.debug=True
@@ -19,7 +16,7 @@ class User(db.Model, UserMixin):
 #Create user variables
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(80), nullable =False)
-    email = db.Column(db.String(256), nullable = False)
+    email = db.Column(db.String(256), nullable = False, unique= True)
     pwd = db.Column(db.String(80), nullable = False)
     highScore = db.Column(db.Integer, default = 0)
 
@@ -39,9 +36,20 @@ def game():
 #db.rollback()
 db.create_all()
 
-'''@app.route('/login', methods = ['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-'''
+	loginEmail = request.form['loginEmail']
+	loginPwd = request.form['loginPwd']
+	
+	query = db.session.query(User).filter(User.email.in_([loginEmail]), User.pwd.in_([loginPwd]) )
+	result = query.first()
+	if result:
+	    session['logged_in'] = True
+	    return render_template('game.html', user = result)
+	else:
+	    flash('wrong password!')
+	    return register()
+	return home()
 
 
 #website routing

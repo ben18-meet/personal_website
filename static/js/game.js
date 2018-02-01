@@ -4,13 +4,11 @@ var userScore;
 var background;
 var explosionSound;
 var backgroundMusic;
-var highScore;
 
 
 
 function startGame() {
 	//startBtn.destroy();
-	highScore  = document.getElementById("highScore")
     background = new component(1280,720,"../static/img/starfield.jpg", 0, 0, "image")
     player = new component(80,60,"../static/img/spaceship.gif", 20,120, "image");    
     userScore = new component("30px", "Consolas", "yellow", 280, 40, "text");
@@ -45,10 +43,9 @@ var gameArea = {
 		var ctx = this.canvas.getContext("2d");
 		ctx.font = "30px Arial";
 		ctx.fillText("Your Score is: " + gameArea.frameNo,this.canvas.width / 2 -155,this.canvas.height/2 - 40);
-		if (gameArea.frameNo > highScore) {
-			highScore = gameArea.frameNo;
 		}
 		console.log(gameArea.frameNo);
+        checkScore();
 		
 
 
@@ -177,6 +174,19 @@ function checkKey(e) {
     	console.log("Let the games begin!")
     }
 }    
+
+
+function checkScore() {
+
+    if (gameArea.frameNo > highScore){
+
+        var highScore = document.getElementbyId('user_score');
+        
+
+        }
+
+}
+
 
 function updateGameArea() {
 	

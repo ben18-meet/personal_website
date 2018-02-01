@@ -9,9 +9,12 @@
 </head>
 <body onload="startGame()">
 <h1> Hello {{user.name}}</h1>
-<p>Your HS is: <p id = "highScore">{{user.highScore}}</p>
+<p>Your HS is: {{user.highScore}}</p>
+<h1>Gentle clicks youngling</h1>
 
-
+<form>
+<input type = "number" name = "user_score" value = {{user.highScore}}>
+</form>
 
 </body>
 </html>
