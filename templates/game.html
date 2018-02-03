@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../static/js/game.js"></script>
 <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<scriptsrc="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script src="../static/js/game.js"></script>
+
 </head>
-<body onload="startGame()">
+<body onload="window.onload()">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="game">Play the Game!</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	    	<li><a href="aboutUs">About Us</a></li>
+	    	<li><a href="logout"> Logout</a></li>
+	    	
+	    </ul>
+	  </div>
+	</nav>
+
+<br><br>
+<script src="../static/js/game.js"></script>	
+<button onclick = "startGame()" id = "startBtn">Play!</button>
 <h1> Hello {{user.name}}</h1>
 <p>Your HS is: {{user.highScore}}</p>
 <h1>Gentle clicks youngling</h1>
 
-<form>
-<input type = "number" name = "user_score" value = {{user.highScore}}>
+<form action="{{url_for('userScore')}}" id = "user_hs" method = 'post'>
+<input	type = "text" name ="current_user" value = {{user.name}}>
+<input type = "number" name = "user_score" value = {{user.highscore}}>
+<input type="submit" value="Submit">
 </form>
 
 </body>

@@ -48,14 +48,17 @@ def login():
 	    return render_template('game.html', user = result)
 	else:
 	    flash('wrong password!')
-	    return register()
+	    return login()
 	return home()
-
 
 #website routing
 @app.route('/')
 def register(): 
 	return render_template('register.html')
+
+@app.route('/signIn')
+def signIn():
+    return render_template('login.html')    
 
 @app.route('/game')
 def home():
@@ -63,6 +66,28 @@ def home():
         return render_template('register.html')
     else:
         return render_template('game.html')
+
+@app.route('/aboutUs')
+def aboutUs():
+    return render_template('about.html')        
+
+
+@app.route('/logout')
+def logout():
+    return render_template('register.html')
+
+@app.route('/userScore', methods = ['POST', 'GET']) 
+def userScore():
+    current_name = request.form['current_user']
+    score = request.form['user_score']
+    gameUser = db.session.query(User).filter_by(name = current_name)
+
+    gameUser.highScore = score
+    db.session.commit()
+
+    return render_template('game.html', user = gameUser)
+      
+
 
 
 if __name__ == '__main__':

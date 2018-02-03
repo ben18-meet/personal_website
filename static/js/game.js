@@ -1,14 +1,21 @@
+var highScore;
+var gameBtn
 var player;
 var obstacles = [];
 var userScore;
 var background;
 var explosionSound;
 var backgroundMusic;
+var scoreForm
+window.onload = function(){
+    gameBtn = document.getElementById('startBtn');
+    highScore = document.getElementById('user_score');
+    scoreForm = document.getElementById('user_hs')
 
-
-
+           
+        }
 function startGame() {
-	//startBtn.destroy();
+    gameBtn.disabled = true;
     background = new component(1280,720,"../static/img/starfield.jpg", 0, 0, "image")
     player = new component(80,60,"../static/img/spaceship.gif", 20,120, "image");    
     userScore = new component("30px", "Consolas", "yellow", 280, 40, "text");
@@ -28,8 +35,7 @@ var gameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea,20);
-        //startBtn = gameArea.add.button(gameArea.width/2, gameArea.height/2, 'button', startGame(), this, 1,0,2);
-    	//startBtn.anchor.set(0.5);
+        
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -43,14 +49,16 @@ var gameArea = {
 		var ctx = this.canvas.getContext("2d");
 		ctx.font = "30px Arial";
 		ctx.fillText("Your Score is: " + gameArea.frameNo,this.canvas.width / 2 -155,this.canvas.height/2 - 40);
-		}
 		console.log(gameArea.frameNo);
         checkScore();
+
+        }
+		
 		
 
 
 
-	}
+	
 }
 //count frames
 function everyinterval(n) {
@@ -180,7 +188,10 @@ function checkScore() {
 
     if (gameArea.frameNo > highScore){
 
-        var highScore = document.getElementbyId('user_score');
+        highScore = gameArea.frameNo;
+        document.getElementById('user_hs').elements.namedItem('user_score').value = highScore;
+        document.getElementById("user_hs").submit();
+
         
 
         }

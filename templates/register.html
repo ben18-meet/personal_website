@@ -24,16 +24,7 @@
 <h1 id ="explore">Ready to Explore?</h1>
 
 <h1 class = 'instructions'>Already A Member?</h1>
-
-<form action = "{{url_for('login')}}" method="post">
-  
-  <input type="text" name="loginEmail" placeholder="Enter your E-Mail"> 
-  <br>
-  <br>
-  <input type="password" name ="loginPwd" placeholder="Enter your Password">
-  <br><br>
-  <input type="submit" value="Submit">
-
+<a href="{{url_for('signIn')}}">Log In here</a>
 
 
 </div>

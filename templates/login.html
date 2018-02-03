@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+	</head>
+
+<body>
+<div class = "container">
+	<div class="wrapper">
+		<form action = "{{url_for('login')}}" method="post">       
+		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+			  <hr class="colorgraph"><br>
+			  
+			  <input type="text" class="form-control" name="loginEmail" placeholder="Enter your E-Mail" required="" autofocus="" />
+			  <br><br>
+			  <input type="password" class="form-control" name="loginPwd" placeholder="Password" required=""/>     		  
+			 <br><br>
+			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
+		</form>			
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+<!--<form action = "{{url_for('login')}}" method="post">
+  
+  <input type="text" name="loginEmail" placeholder="Enter your E-Mail"> 
+  <br>
+  <br>
+  <input type="password" name ="loginPwd" placeholder="Enter your Password">
+  <br><br>
+  <input type="submit" value="Submit">
+-->
