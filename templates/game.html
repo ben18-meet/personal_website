@@ -17,7 +17,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="game">Play the Game!</a>
+	      <a class="navbar-brand" href="home">Play the Game!</a>
 	    </div>
 	    <ul class="nav navbar-nav">
 	    	<li><a href="aboutUs">About Us</a></li>
@@ -28,17 +28,7 @@
 	</nav>
 
 <br><br>
+<h2 id = 'instruct'>Click Space to Jump! Beware of the Astroids!</h2>
 <script src="../static/js/game.js"></script>	
 <button onclick = "startGame()" id = "startBtn">Play!</button>
-<h1> Hello {{user.name}}</h1>
-<p>Your HS is: {{user.highScore}}</p>
-<h1>Gentle clicks youngling</h1>
 
-<form action="{{url_for('userScore')}}" id = "user_hs" method = 'post'>
-<input	type = "text" name ="current_user" value = {{user.name}}>
-<input type = "number" name = "user_score" value = {{user.highscore}}>
-<input type="submit" value="Submit">
-</form>
-
-</body>
-</html>

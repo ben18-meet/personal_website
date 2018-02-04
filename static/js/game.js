@@ -1,4 +1,3 @@
-var highScore;
 var gameBtn
 var player;
 var obstacles = [];
@@ -6,11 +5,8 @@ var userScore;
 var background;
 var explosionSound;
 var backgroundMusic;
-var scoreForm
 window.onload = function(){
     gameBtn = document.getElementById('startBtn');
-    highScore = document.getElementById('user_score');
-    scoreForm = document.getElementById('user_hs')
 
            
         }
@@ -50,7 +46,6 @@ var gameArea = {
 		ctx.font = "30px Arial";
 		ctx.fillText("Your Score is: " + gameArea.frameNo,this.canvas.width / 2 -155,this.canvas.height/2 - 40);
 		console.log(gameArea.frameNo);
-        checkScore();
 
         }
 		
@@ -78,7 +73,7 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;
     this.speedY = 0;
-    this.speedX = 0.01; 
+    this.speedX = 0.03; 
     this.gravity = 0.01;
     this.gravitySpeed = 0;
     this.update = function(){
@@ -184,19 +179,18 @@ function checkKey(e) {
 }    
 
 
-function checkScore() {
+/*function checkScore() {
 
     if (gameArea.frameNo > highScore){
 
         highScore = gameArea.frameNo;
         document.getElementById('user_hs').elements.namedItem('user_score').value = highScore;
-        document.getElementById("user_hs").submit();
 
         
 
         }
 
-}
+}*/
 
 
 function updateGameArea() {

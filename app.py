@@ -38,18 +38,18 @@ db.create_all()
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-	loginEmail = request.form['loginEmail']
-	loginPwd = request.form['loginPwd']
-	
-	query = db.session.query(User).filter(User.email.in_([loginEmail]), User.pwd.in_([loginPwd]) )
-	result = query.first()
-	if result:
-	    session['logged_in'] = True
-	    return render_template('game.html', user = result)
-	else:
-	    flash('wrong password!')
-	    return login()
-	return home()
+    error = None
+    loginEmail = request.form['loginEmail']
+    loginPwd = request.form['loginPwd']
+
+    query = db.session.query(User).filter(User.email.in_([loginEmail]), User.pwd.in_([loginPwd]) )
+    user = query.first()
+    if user:
+        session['logged_in'] = True
+        return render_template('game.html', user = user)
+    else:
+        error = 'Invalid username or password. Please try again!'
+    return signIn()
 
 #website routing
 @app.route('/')
@@ -60,12 +60,9 @@ def register():
 def signIn():
     return render_template('login.html')    
 
-@app.route('/game')
+@app.route('/home')
 def home():
-    if not session.get('logged_in'):
-        return render_template('register.html')
-    else:
-        return render_template('game.html')
+    return render_template('game.html')
 
 @app.route('/aboutUs')
 def aboutUs():
@@ -75,18 +72,6 @@ def aboutUs():
 @app.route('/logout')
 def logout():
     return render_template('register.html')
-
-@app.route('/userScore', methods = ['POST', 'GET']) 
-def userScore():
-    current_name = request.form['current_user']
-    score = request.form['user_score']
-    gameUser = db.session.query(User).filter_by(name = current_name)
-
-    gameUser.highScore = score
-    db.session.commit()
-
-    return render_template('game.html', user = gameUser)
-      
 
 
 
